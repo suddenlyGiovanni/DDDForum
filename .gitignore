@@ -1,0 +1,8 @@
+.direnv/
+**/.vscode/
+**/.DS_Store
+**/template**
+**/dev.db
+**/node_modules
+**/dist
+**/.env
