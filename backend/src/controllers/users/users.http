@@ -13,3 +13,15 @@ Content-Type: application/json
 ### GetUser
 GET http://localhost:3000/users/?email=foo@bar.baz
 Content-Type: application/json
+
+
+### EditUser
+PUT http://localhost:3000/users/edit/2
+Content-Type: application/json
+
+{
+	"email": "jhon@doe.wiz",
+	"firstName": "Jon",
+	"lastName": "Doe",
+	"username": "Jhon.Doe"
+}
