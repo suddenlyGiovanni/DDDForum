@@ -1,0 +1,10 @@
+### CreateUser
+POST http://localhost:3000/users/new
+Content-Type: application/json
+
+{
+	"email": {{$random.internet.emailAddress}},
+	"firstName": {{$random.name.firstName}},
+	"lastName": {{$random.name.lastName}},
+	"username": {{$random.name.username}}
+}
