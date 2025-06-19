@@ -1,16 +1,22 @@
 {
 	"compilerOptions": {
-		"target": "es5",
-		"module": "commonjs",
-		"lib": ["es6"],
-		"allowJs": true,
-		"outDir": "build",
-		"rootDir": "src",
-		"strict": true,
-		"esModuleInterop": true,
-		"types": ["node", "jest"],
-		"skipLibCheck": true
+		"allowImportingTsExtensions": true,
+		"moduleDetection": "force",
+		"noEmit": true,
+		"rewriteRelativeImportExtensions": true,
+		"types": [
+			"node"
+		]
 	},
-	"include": ["src/**/*"],
-	"exclude": ["src/**/*.spec.ts"]
+	"exclude": [
+		"src/**/*.spec.ts"
+	],
+	"extends": [
+		"@tsconfig/strictest/tsconfig.json",
+		"@tsconfig/node24/tsconfig.json",
+		"@tsconfig/node-ts/tsconfig.json"
+	],
+	"include": [
+		"src/**/*"
+	]
 }
