@@ -17,20 +17,20 @@ export class User {
 	readonly password: string
 	readonly username: string
 
-	constructor(
-		email: string,
-		firstName: string,
-		id: number,
-		lastName: string,
-		password: string,
+	constructor(user: {
+		email: string
+		firstName: string
+		id: number
+		lastName: string
+		password: string
 		username: string
-	) {
-		this.email = Email.of(email)
-		this.firstName = firstName
-		this.id = User.Id(id)
-		this.lastName = lastName
-		this.password = password
-		this.username = username
+	}) {
+		this.email = Email.of(user.email)
+		this.firstName = user.firstName
+		this.id = User.Id(user.id)
+		this.lastName = user.lastName
+		this.password = user.password
+		this.username = user.username
 	}
 
 	/** UserId.Type constructor */
