@@ -1,14 +1,14 @@
 import type { DatabaseSync } from 'node:sqlite'
 
-import type { Email } from '../../domains/email.ts'
-import type { User } from '../../domains/user.ts'
+import type { Email }                      from '../../domains/email.ts'
+import type { User }                       from '../../domains/user.ts'
 import type { CreateUserDto, EditUserDto } from './user.dto.ts'
 import {
 	EmailAlreadyTaken,
 	UserNotFoundError,
 	UsernameAlreadyTaken,
-} from './user.error.ts'
-import { UserSchema } from './user.schema.ts'
+}                                          from './user.error.ts'
+import { UserSchema }                      from './user.schema.ts'
 
 /**
  * A repository for managing users.
@@ -37,22 +37,22 @@ export class UserRepository {
 	}
 
 	createUser({
-		firstName,
-		email,
-		username,
-		lastName,
-	}: CreateUserDto): Promise<User> {
+							 firstName,
+							 email,
+							 username,
+							 lastName,
+						 }: CreateUserDto): Promise<User> {
 		try {
-			if (!this.isUniqueEmail({ email })) {
+			if (!this.isUniqueEmail({email})) {
 				throw new EmailAlreadyTaken(email)
 			}
 
-			if (!this.isUniqueUsername({ username })) {
+			if (!this.isUniqueUsername({username})) {
 				throw new UsernameAlreadyTaken(username)
 			}
 
 			const maybeUserRow = this.#db
-				.prepare(
+			.prepare(
 					`
               INSERT INTO users (email, username, first_name, last_name, password)
               VALUES (@email,
@@ -60,15 +60,15 @@ export class UserRepository {
                       @firstName,
                       @lastName,
                       @password) RETURNING *;
-					`
-				)
-				.get({
-					email,
-					firstName,
-					lastName,
-					password: generateRandomPassword(10),
-					username,
-				})
+					`,
+			)
+			.get({
+				email,
+				firstName,
+				lastName,
+				password: generateRandomPassword(10),
+				username,
+			})
 
 			if (maybeUserRow === undefined) {
 				throw new UserNotFoundError(email)
@@ -80,7 +80,17 @@ export class UserRepository {
 		}
 	}
 
-
+	getUserByEmail(email: Email.Type): Promise<User> {
+		const userRecord = this.#db
+		.prepare(`SELECT *
+              FROM users
+              WHERE users.email = @email;`)
+		.get({email})
+		if (userRecord === undefined) {
+			return Promise.reject(new UserNotFoundError(email))
+		}
+		return Promise.resolve(UserSchema.decode(userRecord))
+	}
 
 	/**
 	 * Determines if an email is unique in the users database.
@@ -93,22 +103,22 @@ export class UserRepository {
 	 * @return Returns true if the email is unique, otherwise false.
 	 */
 	private isUniqueEmail({
-		email,
-		id,
-	}: {
+													email,
+													id,
+												}: {
 		email: Email.Type
 		id?: UserId.Type
 	}): boolean {
 		const count =
-			id === undefined
-				? this.#db
+				id === undefined
+						? this.#db
 						.prepare(`
                 SELECT COUNT(*) as count
                 FROM users
                 WHERE users.email = @email;
 						`)
-						.get({ email })?.['count']
-				: this.#db
+						.get({email})?.['count']
+						: this.#db
 						.prepare(`
                 SELECT COUNT(*) as count
                 FROM users
@@ -132,22 +142,22 @@ export class UserRepository {
 	 * @return Returns true if the username is unique, otherwise false.
 	 */
 	private isUniqueUsername({
-		username,
-		id,
-	}: {
+														 username,
+														 id,
+													 }: {
 		username: string
 		id?: UserId.Type
 	}): boolean {
 		const count =
-			id === undefined
-				? this.#db
+				id === undefined
+						? this.#db
 						.prepare(`
                 SELECT COUNT(*) as count
                 FROM users
                 WHERE users.username = @username;
 						`)
-						.get({ username })?.['count']
-				: this.#db
+						.get({username})?.['count']
+						: this.#db
 						.prepare(`
                 SELECT COUNT(*) as count
                 FROM users
@@ -165,7 +175,7 @@ export class UserRepository {
 
 function generateRandomPassword(length: number): string {
 	const charset =
-		'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+			'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 	let password = ''
 	for (let i = 0; i < length; i++) {
 		const randomIndex = Math.floor(Math.random() * charset.length)

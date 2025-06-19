@@ -8,3 +8,8 @@ Content-Type: application/json
 	"lastName": {{$random.name.lastName}},
 	"username": {{$random.name.username}}
 }
+
+
+### GetUser
+GET http://localhost:3000/users/?email=foo@bar.baz
+Content-Type: application/json
