@@ -1,0 +1,27 @@
+### CreateUser
+POST http://localhost:3000/users/new
+Content-Type: application/json
+
+{
+	"email": "{{$random.internet.safeEmailAddress}}",
+	"firstName": "{{$random.name.firstName}}",
+	"lastName": "{{$random.name.lastName}}",
+	"username": "{{$random.name.username}}"
+}
+
+
+### GetUser
+GET http://localhost:3000/users/?email=foo@bar.baz
+Content-Type: application/json
+
+
+### EditUser
+PUT http://localhost:3000/users/edit/2
+Content-Type: application/json
+
+{
+	"email": "jhon@doe.wiz",
+	"firstName": "Jon",
+	"lastName": "Doe",
+	"username": "Jhon.Doe"
+}

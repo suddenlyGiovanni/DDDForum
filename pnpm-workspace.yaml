@@ -3,3 +3,14 @@ packages:
   - frontend
 enableGlobalVirtualStore: true
 catalogMode: prefer
+catalog:
+  "@biomejs/biome": 2.0.0
+  "@tsconfig/node-ts": ^23.6.1
+  "@tsconfig/node24": ^24.0.1
+  "@tsconfig/strictest": ^2.0.5
+  "@types/express": ~5.0.3
+  "@types/node": ^24.0.3
+  express: 5.1.0
+  husky: ^8.0.1
+  typescript: 5.8.3
+  vitest: 3.2.3
