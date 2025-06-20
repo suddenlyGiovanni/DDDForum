@@ -1,14 +1,14 @@
 {
 	"author": "",
 	"dependencies": {
-		"express": "5.1.0"
+		"express": "catalog:"
 	},
 	"description": "A basic typescript app starter for 2023.",
 	"devDependencies": {
-		"@types/express": "~5.0.3",
-		"@types/node": "^24.0.3",
-		"husky": "^8.0.1",
-		"vitest": "3.2.3"
+		"@types/express": "catalog:",
+		"@types/node": "catalog:",
+		"husky": "catalog:",
+		"vitest": "catalog:"
 	},
 	"husky": {
 		"hooks": {
