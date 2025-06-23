@@ -43,19 +43,31 @@ function parseCreateUserRequestBody(
 	}
 
 	if ('username' in body && typeof body['username'] === 'string') {
-		userDto.username = body['username']
+		const trimmedUsername = body['username'].trim()
+		if (trimmedUsername.length === 0 || trimmedUsername.length > 50) {
+			throw new CreateUserValidationError('username')
+		}
+		userDto.username = trimmedUsername
 	} else {
 		throw new CreateUserValidationError('username')
 	}
 
 	if ('firstName' in body && typeof body['firstName'] === 'string') {
-		userDto.firstName = body['firstName']
+		const trimmedFirstName = body['firstName'].trim()
+		if (trimmedFirstName.length === 0 || trimmedFirstName.length > 100) {
+			throw new CreateUserValidationError('firstName')
+		}
+		userDto.firstName = trimmedFirstName
 	} else {
 		throw new CreateUserValidationError('firstName')
 	}
 
 	if ('lastName' in body && typeof body['lastName'] === 'string') {
-		userDto.lastName = body['lastName']
+		const trimmedLastName = body['lastName'].trim()
+		if (trimmedLastName.length === 0 || trimmedLastName.length > 100) {
+			throw new CreateUserValidationError('lastName')
+		}
+		userDto.lastName = trimmedLastName
 	} else {
 		throw new CreateUserValidationError('lastName')
 	}
