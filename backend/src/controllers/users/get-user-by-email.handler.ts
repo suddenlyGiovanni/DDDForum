@@ -4,14 +4,14 @@ import { Email, EmailValidationError } from '../../domains/email.ts'
 import type { User } from '../../domains/user.ts'
 import { UserNotFoundError } from '../../models/user/user.error.ts'
 import type { UserRepository } from '../../models/user/user.repository.ts'
-import type { ResponsePayload } from '../api.ts'
+import * as Api from '../api.ts'
 
 export const makeGetUserByEmail =
 	(
 		userRepo: UserRepository
 	): express.RequestHandler<
 		never,
-		ResponsePayload<Omit<User, 'password'>>,
+		Api.ResponsePayload<Omit<User, 'password'>>,
 		never,
 		{
 			email: string
@@ -22,7 +22,7 @@ export const makeGetUserByEmail =
 		try {
 			const email = Email.of(req.query.email)
 			const { password, ...user } = await userRepo.getUserByEmail(email)
-			res.status(201).json({
+			res.status(Api.STATUS_CODE.OK).json({
 				_tag: 'success',
 				data: user,
 				error: undefined,
@@ -38,7 +38,7 @@ export const makeGetUserByEmail =
 				statusCode = error.statusCode
 				message = error.message
 			} else {
-				statusCode = 500
+				statusCode = Api.STATUS_CODE.InternalServerError
 				message = 'Internal Server Error'
 			}
 

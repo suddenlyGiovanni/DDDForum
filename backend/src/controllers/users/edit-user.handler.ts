@@ -1,5 +1,6 @@
 import type express from 'express'
 
+import * as Api from '../api.ts'
 import { Email } from '../../domains/email.ts'
 import { BaseError } from '../../domains/error.ts'
 import { User } from '../../domains/user.ts'
@@ -19,7 +20,7 @@ class EditUserValidationError extends BaseError {
 		super({
 			kind: 'ValidationError',
 			message: `Invalid ${field} format`,
-			statusCode: 400,
+			statusCode: Api.STATUS_CODE.BadRequest,
 		})
 		this.field = field
 		this.name = EditUserValidationError.name
@@ -78,13 +79,13 @@ export const makeEditUser =
 
 			const { password, ...user } = await userRepo.editUser(userId, editUserDto)
 
-			res.status(200).json({
+			res.status(Api.STATUS_CODE.OK).json({
 				_tag: 'success',
 				data: user,
 				error: undefined,
 			})
 		} catch (error: unknown) {
-			let statusCode: number
+			let statusCode: Api.StatusCode
 			let message: string
 
 			if (
@@ -96,7 +97,7 @@ export const makeEditUser =
 				statusCode = error.statusCode
 				message = error.message
 			} else {
-				statusCode = 500
+				statusCode = Api.STATUS_CODE.InternalServerError
 				message = 'Internal Server Error'
 			}
 

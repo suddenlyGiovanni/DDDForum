@@ -1,14 +1,15 @@
 import type express from 'express'
 
-import { Email }                from '../../domains/email.ts'
-import { BaseError }            from '../../domains/error.ts'
-import type { CreateUserDto }   from '../../models/user/user.dto.ts'
+import * as Api from '../api.ts'
+import { Email } from '../../domains/email.ts'
+import { BaseError } from '../../domains/error.ts'
+import type { CreateUserDto } from '../../models/user/user.dto.ts'
 import {
 	EmailAlreadyTaken,
 	UserNotFoundError,
 	UsernameAlreadyTaken,
-}                               from '../../models/user/user.error.ts'
-import type { UserRepository }  from '../../models/user/user.repository.ts'
+} from '../../models/user/user.error.ts'
+import type { UserRepository } from '../../models/user/user.repository.ts'
 import type { ResponsePayload } from '../api.ts'
 
 class CreateUserValidationError extends BaseError {
@@ -18,7 +19,7 @@ class CreateUserValidationError extends BaseError {
 		super({
 			kind: 'ValidationError',
 			message: `Invalid ${field} format`,
-			statusCode: 400,
+			statusCode: Api.STATUS_CODE.BadRequest,
 		})
 		this.field = field
 		this.name = CreateUserValidationError.name
@@ -33,7 +34,7 @@ class CreateUserValidationError extends BaseError {
  * @throws Throws an error if required fields such as 'username', 'firstName', or 'lastName' are missing or invalid.
  */
 function parseCreateUserRequestBody(
-		body: Record<string, unknown>,
+	body: Record<string, unknown>
 ): CreateUserDto {
 	const userDto = {} as Record<keyof CreateUserDto, unknown>
 
@@ -63,47 +64,47 @@ function parseCreateUserRequestBody(
 }
 
 export const makeCreateUser =
-		(
-				userRepo: UserRepository,
-		): express.RequestHandler<
-				never,
-				ResponsePayload<CreateUserDto>,
-				Record<string, unknown>,
-				never,
-				never
-		> =>
-				async (req, res) => {
-					const userDto = parseCreateUserRequestBody(req.body)
+	(
+		userRepo: UserRepository
+	): express.RequestHandler<
+		never,
+		ResponsePayload<CreateUserDto>,
+		Record<string, unknown>,
+		never,
+		never
+	> =>
+	async (req, res) => {
+		const userDto = parseCreateUserRequestBody(req.body)
 
-					try {
-						const user = await userRepo.createUser(userDto)
-						res.status(201).json({
-							_tag: 'success',
-							data: user,
-							error: undefined,
-						})
-					} catch (error) {
-						let statusCode: number
-						let message: string
+		try {
+			const user = await userRepo.createUser(userDto)
+			res.status(Api.STATUS_CODE.Created).json({
+				_tag: 'success',
+				data: user,
+				error: undefined,
+			})
+		} catch (error) {
+			let statusCode: Api.StatusCode
+			let message: string
 
-						if (
-								error instanceof CreateUserValidationError ||
-								error instanceof EmailAlreadyTaken ||
-								error instanceof UsernameAlreadyTaken ||
-								error instanceof UserNotFoundError
-						) {
-							statusCode = error.statusCode
-							message = error.message
-						} else {
-							statusCode = 500
-							message = 'Internal Server Error'
-						}
+			if (
+				error instanceof CreateUserValidationError ||
+				error instanceof EmailAlreadyTaken ||
+				error instanceof UsernameAlreadyTaken ||
+				error instanceof UserNotFoundError
+			) {
+				statusCode = error.statusCode
+				message = error.message
+			} else {
+				statusCode = Api.STATUS_CODE.InternalServerError
+				message = 'Internal Server Error'
+			}
 
-						console.error(error)
-						res.status(statusCode).json({
-							_tag: 'failure',
-							data: undefined,
-							error: message,
-						})
-					}
-				}
+			console.error(error)
+			res.status(statusCode).json({
+				_tag: 'failure',
+				data: undefined,
+				error: message,
+			})
+		}
+	}
