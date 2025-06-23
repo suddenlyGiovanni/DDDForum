@@ -1,4 +1,5 @@
 import type { DatabaseSync } from 'node:sqlite'
+import { randomBytes } from 'node:crypto'
 
 import type { Email } from '../../domains/email.ts'
 import type { User } from '../../domains/user.ts'
@@ -244,10 +245,8 @@ export class UserRepository {
 function generateRandomPassword(length: number): string {
 	const charset =
 		'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-	let password = ''
-	for (let i = 0; i < length; i++) {
-		const randomIndex = Math.floor(Math.random() * charset.length)
-		password += charset[randomIndex]
-	}
-	return password
+	const randomValues = randomBytes(length)
+	return Array.from(randomValues)
+		.map(byte => charset[byte % charset.length])
+		.join('')
 }
