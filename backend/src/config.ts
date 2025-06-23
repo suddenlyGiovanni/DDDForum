@@ -1,4 +1,5 @@
 import { BaseError } from './domains/error.ts'
+import * as Api from './controllers/api.ts'
 
 export class Config {
 	static #instance: Config
@@ -9,10 +10,6 @@ export class Config {
 		PORT: string
 		SQLITE_FILE_NAME: string
 	}) {
-		const port = Number(env.PORT)
-		if (Number.isNaN(port) || port < 1 || port > 65535) {
-			throw new ConfigDefect('PORT', `Invalid PORT value: ${env.PORT}. Must be a number between 1 and 65535.`)
-		}
 		this.#PORT = Number(env.PORT)
 		this.#SQLITE_FILE_NAME = env.SQLITE_FILE_NAME
 	}
@@ -43,6 +40,14 @@ export class Config {
 			if (!env['SQLITE_FILE_NAME']) throw new ConfigDefect('SQLITE_FILE_NAME')
 			if (!env['PORT']) throw new ConfigDefect('PORT')
 
+			const port = Number(env['PORT'])
+			if (Number.isNaN(port) || port < 1 || port > 65535) {
+				throw new ConfigDefect(
+					'PORT',
+					'PORT must be a valid number between 1 and 65535'
+				)
+			}
+
 			Config.#instance = new Config({
 				PORT: env['PORT'],
 				SQLITE_FILE_NAME: env['SQLITE_FILE_NAME'],
@@ -55,11 +60,13 @@ export class Config {
 class ConfigDefect extends BaseError {
 	constructor(envKey: 'PORT' | 'SQLITE_FILE_NAME', message?: string) {
 		super({
-					kind: 'ServerError',
-					message: `The environment variable "${envKey}" is not properly set. \nPlease set it before starting the server.`.concat(message ? `\n${message}` : ''),
-					statusCode: 500,
-				},
-		)
+			kind: 'ServerError',
+			message:
+				`The environment variable "${envKey}" is not properly set. \nPlease set it before starting the server.`.concat(
+					message ? `\n${message}` : ''
+				),
+			statusCode: Api.STATUS_CODE.InternalServerError,
+		})
 		this.name = this.constructor.name
 	}
 }
