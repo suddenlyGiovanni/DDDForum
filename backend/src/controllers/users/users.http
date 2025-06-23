@@ -1,5 +1,5 @@
 ### CreateUser
-POST http://localhost:3000/users/new
+POST http://localhost:3000/api/users/new
 Content-Type: application/json
 
 {
@@ -11,12 +11,12 @@ Content-Type: application/json
 
 
 ### GetUser
-GET http://localhost:3000/users/?email=foo@bar.baz
+GET http://localhost:3000/api/users/?email=foo@bar.baz
 Content-Type: application/json
 
 
 ### EditUser
-PUT http://localhost:3000/users/edit/2
+PUT http://localhost:3000/api/users/edit/2
 Content-Type: application/json
 
 {

@@ -9,5 +9,5 @@ export const makeApp = (database: DatabaseSync): Express =>
 	express()
 		.use(express.json())
 		.use(loggerMiddleware)
-		.use('/users', makeUsersRouter(database))
+		.use('/api/users', makeUsersRouter(database))
 		.use(catchAllErrorMiddleware)
