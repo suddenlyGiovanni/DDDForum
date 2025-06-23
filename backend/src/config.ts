@@ -1,3 +1,5 @@
+import { BaseError } from './domains/error.ts'
+
 export class Config {
 	static #instance: Config
 	readonly #PORT: number
@@ -7,8 +9,26 @@ export class Config {
 		PORT: string
 		SQLITE_FILE_NAME: string
 	}) {
+		const port = Number(env.PORT)
+		if (Number.isNaN(port) || port < 1 || port > 65535) {
+			throw new ConfigDefect('PORT', `Invalid PORT value: ${env.PORT}. Must be a number between 1 and 65535.`)
+		}
 		this.#PORT = Number(env.PORT)
 		this.#SQLITE_FILE_NAME = env.SQLITE_FILE_NAME
+	}
+
+	/**
+	 * The server port number.
+	 */
+	get port(): number {
+		return this.#PORT
+	}
+
+	/**
+	 * The database filename.
+	 */
+	get sqliteFileName(): string {
+		return this.#SQLITE_FILE_NAME
 	}
 
 	/**
@@ -30,27 +50,16 @@ export class Config {
 		}
 		return Config.#instance
 	}
-
-	/**
-	 * The database filename.
-	 */
-	get sqliteFileName(): string {
-		return this.#SQLITE_FILE_NAME
-	}
-
-	/**
-	 * The server port number.
-	 */
-	get port(): number {
-		return this.#PORT
-	}
 }
 
-class ConfigDefect extends Error {
-	constructor(envKey: string) {
-		super(
-				`The environment variable "${envKey}" is not set. Please set it before starting the server.`,
+class ConfigDefect extends BaseError {
+	constructor(envKey: 'PORT' | 'SQLITE_FILE_NAME', message?: string) {
+		super({
+					kind: 'ServerError',
+					message: `The environment variable "${envKey}" is not properly set. \nPlease set it before starting the server.`.concat(message ? `\n${message}` : ''),
+					statusCode: 500,
+				},
 		)
-		this.name = 'ConfigDefect'
+		this.name = this.constructor.name
 	}
 }
