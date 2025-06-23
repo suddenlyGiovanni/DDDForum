@@ -1,18 +1,15 @@
-import { Config }           from './config.ts'
-import { makeApp }          from './controllers/app.ts'
+import { Config } from './config.ts'
+import { makeApp } from './controllers/app.ts'
 import { openDatabaseSync } from './database/database.ts'
 
 const config = Config.make(process.env)
 
 export const database = openDatabaseSync(
-		new URL(
-				`./database/${config.sqliteFileName ?? 'database.sqlite'}`,
-				import.meta.url,
-		),
+	new URL(`./database/${config.sqliteFileName}`, import.meta.url)
 )
 
 const server = makeApp(database).listen(config.port, _ =>
-		console.log(`Server is running on port ${config.port}`),
+	console.log(`Server is running on port ${config.port}`)
 )
 
 const signalsListener: NodeJS.SignalsListener = signal => {
