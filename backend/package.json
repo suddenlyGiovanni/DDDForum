@@ -1,6 +1,7 @@
 {
 	"author": "",
 	"dependencies": {
+		"@std/http": "catalog:",
 		"express": "catalog:"
 	},
 	"description": "A basic typescript app starter for 2023.",
