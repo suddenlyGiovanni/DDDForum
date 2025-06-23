@@ -142,17 +142,21 @@ export class UserRepository {
 	}
 
 	getUserByEmail(email: Email.Type): Promise<User> {
-		const userRecord = this.#db
-			.prepare(`
-        SELECT *
-        FROM users
-        WHERE users.email = @email;
-		`)
-			.get({ email })
-		if (userRecord === undefined) {
-			return Promise.reject(new UserNotFoundError(email))
+		try {
+			const userRecord = this.#db
+				.prepare(`
+          SELECT *
+          FROM users
+          WHERE users.email = @email;
+			`)
+				.get({ email })
+
+			if (userRecord === undefined) throw new UserNotFoundError(email)
+
+			return Promise.resolve(UserSchema.decode(userRecord))
+		} catch (error) {
+			return Promise.reject(error)
 		}
-		return Promise.resolve(UserSchema.decode(userRecord))
 	}
 
 	/**
