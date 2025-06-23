@@ -1,7 +1,7 @@
 import type { ErrorRequestHandler, RequestHandler } from 'express'
 
-import { BaseError } from '../domains/error.ts'
-import type { ResponsePayload } from './api.ts'
+import { BaseError, type Errors } from '../domains/error.ts'
+import * as Api from './api.ts'
 
 export const loggerMiddleware: RequestHandler = (req, _res, next) => {
 	console.log(`${req.method} ${req.url}`)
@@ -9,13 +9,14 @@ export const loggerMiddleware: RequestHandler = (req, _res, next) => {
 }
 export const catchAllErrorMiddleware: ErrorRequestHandler<
 	Record<string, string>,
-	ResponsePayload<never>
+	Api.ResponsePayload<never>
 > = (error: unknown, req, res, _next) => {
 	// Defaults
-	let statusCode: number = 500
-	let errorKind: string = 'ServerError'
+	let statusCode: Api.StatusCode = Api.STATUS_CODE.InternalServerError
+	let errorKind: Errors.Kind = 'ServerError'
 	let message: string = 'Internal Server Error'
-	let statusMessage: string = 'Internal Server Error'
+	let statusMessage: Api.StatusText =
+		Api.STATUS_TEXT[Api.STATUS_CODE.InternalServerError]
 	let stack: string | undefined
 
 	// Custom error recognition
