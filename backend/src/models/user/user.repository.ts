@@ -1,4 +1,5 @@
 import type { DatabaseSync } from 'node:sqlite'
+import assert from 'node:assert/strict'
 import { randomBytes } from 'node:crypto'
 
 import type { Email } from '../../domains/email.ts'
@@ -71,9 +72,7 @@ export class UserRepository {
 					username,
 				})
 
-			if (maybeUserRow === undefined) {
-				throw new UserNotFoundError(email)
-			}
+			assert(maybeUserRow, 'Failed to create the user')
 
 			return Promise.resolve(UserSchema.decode(maybeUserRow))
 		} catch (error) {
