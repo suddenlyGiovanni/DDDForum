@@ -35,19 +35,31 @@ function parseEditUserRequestBody(body: Record<string, unknown>): EditUserDto {
 	}
 
 	if ('username' in body && typeof body['username'] === 'string') {
-		userDto.username = body['username']
+		const trimmedUsername = body['username'].trim()
+		if (trimmedUsername.length === 0 || trimmedUsername.length > 50) {
+			throw new EditUserValidationError('username')
+		}
+		userDto.username = trimmedUsername
 	} else {
 		throw new EditUserValidationError('username')
 	}
 
 	if ('firstName' in body && typeof body['firstName'] === 'string') {
-		userDto.firstName = body['firstName']
+		const trimmedFirstName = body['firstName'].trim()
+		if (trimmedFirstName.length === 0 || trimmedFirstName.length > 100) {
+			throw new EditUserValidationError('firstName')
+		}
+		userDto.firstName = trimmedFirstName
 	} else {
 		throw new EditUserValidationError('firstName')
 	}
 
 	if ('lastName' in body && typeof body['lastName'] === 'string') {
-		userDto.lastName = body['lastName']
+		const trimmedLastName = body['lastName'].trim()
+		if (trimmedLastName.length === 0 || trimmedLastName.length > 100) {
+			throw new EditUserValidationError('lastName')
+		}
+		userDto.lastName = trimmedLastName
 	} else {
 		throw new EditUserValidationError('lastName')
 	}
