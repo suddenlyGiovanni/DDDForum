@@ -1,4 +1,4 @@
-### CreateUser
+### Create a new User
 POST http://localhost:3000/api/users
 Content-Type: application/json
 
@@ -10,18 +10,18 @@ Content-Type: application/json
 }
 
 
-### GetUser
+### Get an existing User by email query parameter
 GET http://localhost:3000/api/users/?email=foo@bar.baz
 Content-Type: application/json
 
 
-### EditUser
-PUT http://localhost:3000/api/users/edit/2
+### Edit an existing User by ID parameter
+PUT http://localhost:3000/api/users/2
 Content-Type: application/json
 
 {
-	"email": "jhon@doe.wiz",
-	"firstName": "Jon",
-	"lastName": "Doe",
-	"username": "Jhon.Doe"
+	"email": "{{$random.internet.safeEmailAddress}}",
+	"firstName": "{{$random.name.firstName}}",
+	"lastName": "{{$random.name.lastName}}",
+	"username": "{{$random.name.username}}"
 }

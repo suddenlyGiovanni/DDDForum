@@ -14,5 +14,5 @@ export const makeUsersRouter = (database: DatabaseSync): Router => {
 		.Router()
 		.get('/', makeGetUserByEmail(userRepo))
 		.post('/', makeCreateUser(userRepo))
-		.put('/edit/:userId', makeEditUser(userRepo))
+		.put('/:userId', makeEditUser(userRepo))
 }
