@@ -43,19 +43,20 @@ export class BaseError extends Error implements Errors.Base {
 	readonly statusMessage: string
 
 	constructor(
-		{
-			kind,
-			message,
-			statusCode,
-		}: {
-			statusCode: Errors.StatusCode
-			kind: Errors.Kind
-			message: string
-		},
-		options?: ErrorOptions
+			{
+				kind,
+				message,
+				statusCode,
+			}: {
+				statusCode: Errors.StatusCode
+				kind: Errors.Kind
+				message: string
+			},
+			options?: ErrorOptions,
 	) {
-		// biome-ignore lint/style/noNonNullAssertion: statusCode is constrained to the set of key of STATUS_CODES!
-		const statusMessage = STATUS_CODES[statusCode]!
+
+		const statusMessage = STATUS_CODES[statusCode] ?? 'Unknown Status'
+
 		super(`${kind} | ${statusCode} ${statusMessage}:: ${message}`, options)
 		this.statusCode = statusCode
 		this.statusMessage = statusMessage
@@ -64,13 +65,13 @@ export class BaseError extends Error implements Errors.Base {
 
 	static isBaseError(error: unknown): error is BaseError {
 		return (
-			BaseError.isError(error) &&
-			'kind' in error &&
-			typeof error.kind === 'string' &&
-			'statusCode' in error &&
-			typeof error.statusCode === 'number' &&
-			'statusMessage' in error &&
-			typeof error.statusMessage === 'string'
+				BaseError.isError(error) &&
+				'kind' in error &&
+				typeof error.kind === 'string' &&
+				'statusCode' in error &&
+				typeof error.statusCode === 'number' &&
+				'statusMessage' in error &&
+				typeof error.statusMessage === 'string'
 		)
 	}
 
