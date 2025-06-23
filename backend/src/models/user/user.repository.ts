@@ -132,9 +132,8 @@ export class UserRepository {
 					username,
 				})
 
-			if (editedUserRecord === undefined) {
-				throw new UserNotFoundError(email)
-			}
+			assert(editedUserRecord, new UserNotFoundError(email))
+
 			return Promise.resolve(UserSchema.decode(editedUserRecord))
 		} catch (error) {
 			return Promise.reject(error)
