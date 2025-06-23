@@ -1,3 +1,10 @@
+export {
+	STATUS_CODE,
+	STATUS_TEXT,
+	type StatusCode,
+	type StatusText,
+} from '@std/http/status'
+
 type SuccessResponse<A> = {
 	readonly _tag: 'success'
 	readonly error: undefined
@@ -10,6 +17,4 @@ type FailureResponse = {
 	readonly data: undefined
 }
 
-export type ResponsePayload<A> =
-		SuccessResponse<A>
-		| FailureResponse
+export type ResponsePayload<A> = SuccessResponse<A> | FailureResponse

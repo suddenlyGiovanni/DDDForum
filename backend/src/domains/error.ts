@@ -1,4 +1,4 @@
-import { STATUS_CODES } from 'node:http'
+import * as Api from '../controllers/api.ts'
 
 export declare namespace Errors {
 	const ErrorEnum: {
@@ -28,13 +28,15 @@ export declare namespace Errors {
 
 	type Kind = (typeof ErrorEnum)[keyof typeof ErrorEnum]
 
-	type StatusCode = Exclude<keyof typeof STATUS_CODES, string>
+	type StatusCode = Api.StatusCode
+
+	type StatusText = Api.StatusText
 
 	interface Base extends Error {
 		readonly _tag: 'BaseError'
-		readonly kind: Kind
-		readonly statusCode: StatusCode
-		readonly statusMessage: string
+		readonly kind: Errors.Kind
+		readonly statusCode: Errors.StatusCode
+		readonly statusMessage: Errors.StatusText
 	}
 }
 
@@ -42,22 +44,21 @@ export class BaseError extends Error implements Errors.Base {
 	readonly _tag = 'BaseError'
 	readonly kind: Errors.Kind
 	readonly statusCode: Errors.StatusCode
-	readonly statusMessage: string
+	readonly statusMessage: Errors.StatusText
 
 	constructor(
-			{
-				kind,
-				message,
-				statusCode,
-			}: {
-				statusCode: Errors.StatusCode
-				kind: Errors.Kind
-				message: string
-			},
-			options?: ErrorOptions,
+		{
+			kind,
+			message,
+			statusCode,
+		}: {
+			statusCode: Errors.StatusCode
+			kind: Errors.Kind
+			message: string
+		},
+		options?: ErrorOptions
 	) {
-
-		const statusMessage = STATUS_CODES[statusCode] ?? 'Unknown Status'
+		const statusMessage = Api.STATUS_TEXT[statusCode]
 
 		super(`${kind} | ${statusCode} ${statusMessage}:: ${message}`, options)
 		this.statusCode = statusCode
@@ -65,18 +66,17 @@ export class BaseError extends Error implements Errors.Base {
 		this.kind = kind
 	}
 
-
 	static isBaseError(error: unknown): error is BaseError {
 		return (
-				BaseError.isError(error) &&
-				'_tag' in error &&
-				error._tag === 'BaseError' &&
-				'kind' in error &&
-				typeof error.kind === 'string' &&
-				'statusCode' in error &&
-				typeof error.statusCode === 'number' &&
-				'statusMessage' in error &&
-				typeof error.statusMessage === 'string'
+			BaseError.isError(error) &&
+			'_tag' in error &&
+			error._tag === 'BaseError' &&
+			'kind' in error &&
+			typeof error.kind === 'string' &&
+			'statusCode' in error &&
+			typeof error.statusCode === 'number' &&
+			'statusMessage' in error &&
+			typeof error.statusMessage === 'string'
 		)
 	}
 
