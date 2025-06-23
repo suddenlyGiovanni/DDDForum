@@ -40,6 +40,6 @@ export class EmailAlreadyTaken extends BaseError {
 			statusCode: Api.STATUS_CODE.Conflict,
 		})
 		this.email = email
-		this.name = UserNotFoundError.name
+		this.name = EmailAlreadyTaken.name
 	}
 }
