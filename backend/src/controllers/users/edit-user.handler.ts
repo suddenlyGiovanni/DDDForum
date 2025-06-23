@@ -87,7 +87,15 @@ export const makeEditUser =
 	async (req, res) => {
 		try {
 			const editUserDto = parseEditUserRequestBody(req.body)
-			const userId = User.Id(Number(req.params.userId))
+			const userIdNum = Number(req.params.userId)
+			if (
+				Number.isNaN(userIdNum) ||
+				!Number.isInteger(userIdNum) ||
+				userIdNum <= 0
+			) {
+				throw new EditUserValidationError('id')
+			}
+			const userId = User.Id(userIdNum)
 
 			const { password, ...user } = await userRepo.editUser(userId, editUserDto)
 
