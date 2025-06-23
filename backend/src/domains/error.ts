@@ -31,6 +31,7 @@ export declare namespace Errors {
 	type StatusCode = Exclude<keyof typeof STATUS_CODES, string>
 
 	interface Base extends Error {
+		readonly _tag: 'BaseError'
 		readonly kind: Kind
 		readonly statusCode: StatusCode
 		readonly statusMessage: string
@@ -38,6 +39,7 @@ export declare namespace Errors {
 }
 
 export class BaseError extends Error implements Errors.Base {
+	readonly _tag = 'BaseError'
 	readonly kind: Errors.Kind
 	readonly statusCode: Errors.StatusCode
 	readonly statusMessage: string
@@ -63,9 +65,12 @@ export class BaseError extends Error implements Errors.Base {
 		this.kind = kind
 	}
 
+
 	static isBaseError(error: unknown): error is BaseError {
 		return (
 				BaseError.isError(error) &&
+				'_tag' in error &&
+				error._tag === 'BaseError' &&
 				'kind' in error &&
 				typeof error.kind === 'string' &&
 				'statusCode' in error &&
