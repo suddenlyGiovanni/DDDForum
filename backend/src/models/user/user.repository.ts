@@ -186,7 +186,8 @@ export class UserRepository {
                 SELECT COUNT(*) as count
                 FROM users
                 WHERE users.email = @email
-                  AND users.id IS NOT @id;
+                    AND users.id != @id;
+
 						`)
 						.get({
 							email,
@@ -225,7 +226,7 @@ export class UserRepository {
                 SELECT COUNT(*) as count
                 FROM users
                 WHERE users.username = @username
-                  AND users.id IS NOT @id;
+                  AND users.id != @id;
 						`)
 						.get({
 							id,
