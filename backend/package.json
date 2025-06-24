@@ -1,10 +1,8 @@
 {
-	"author": "",
 	"dependencies": {
 		"@std/http": "catalog:",
 		"express": "catalog:"
 	},
-	"description": "A basic typescript app starter for 2023.",
 	"devDependencies": {
 		"@types/express": "catalog:",
 		"@types/node": "catalog:",
@@ -17,16 +15,14 @@
 		}
 	},
 	"license": "ISC",
-	"main": "index.ts",
-	"name": "typescript-starter",
+	"main": "src/index.ts",
 	"scripts": {
 		"format": "biome format --write",
 		"lint": "biome lint",
-		"start": "node --env-file-if-exists=.env src/index.ts",
-		"start:dev": "node --env-file-if-exists=.env --watch-path=./src src/index.ts",
+		"start": "node --env-file-if-exists=../.env src/index.ts",
+		"start:dev": "node --env-file-if-exists=../.env --watch-path=./src src/index.ts",
 		"test": "vitest --run --coverage",
 		"test:dev": "vitest --watch"
 	},
-	"type": "module",
-	"version": "1.0.0"
+	"type": "module"
 }
