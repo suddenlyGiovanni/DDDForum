@@ -1,0 +1,27 @@
+### Create a new User
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+	"email": "{{$random.internet.safeEmailAddress}}",
+	"firstName": "{{$random.name.firstName}}",
+	"lastName": "{{$random.name.lastName}}",
+	"username": "{{$random.name.username}}"
+}
+
+
+### Get an existing User by email query parameter
+GET http://localhost:3000/api/users/?email=keneth.orn@example.com
+Content-Type: application/json
+
+
+### Edit an existing User by ID parameter
+PUT http://localhost:3000/api/users/1
+Content-Type: application/json
+
+{
+	"email": "{{$random.internet.safeEmailAddress}}",
+	"firstName": "{{$random.name.firstName}}",
+	"lastName": "{{$random.name.lastName}}",
+	"username": "{{$random.name.username}}"
+}
