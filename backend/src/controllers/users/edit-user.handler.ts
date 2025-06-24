@@ -27,6 +27,14 @@ class EditUserValidationError extends BaseError {
 	}
 }
 
+/**
+ * Validates and parses a user edit request body into an `EditUserDto`.
+ *
+ * Ensures that `username`, `firstName`, and `lastName` are present, are strings, and meet length constraints. Optionally parses `email` if provided. Throws an `EditUserValidationError` if any required field is missing or invalid.
+ *
+ * @param body - The request body containing user fields to update
+ * @returns A validated and sanitized `EditUserDto` object
+ */
 function parseEditUserRequestBody(body: Record<string, unknown>): EditUserDto {
 	const userDto = {} as Record<keyof EditUserDto, unknown>
 

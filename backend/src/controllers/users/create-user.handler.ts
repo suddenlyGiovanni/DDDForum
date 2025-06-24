@@ -27,11 +27,13 @@ class CreateUserValidationError extends BaseError {
 }
 
 /**
- * Parses the request body for creating a user and converts it into a UserDto object.
+ * Validates and parses a user creation request body into a `CreateUserDto`.
  *
- * @param body - The request body containing user data.
- * @return The parsed UserDto object containing the user information.
- * @throws Throws an error if required fields such as 'username', 'firstName', or 'lastName' are missing or invalid.
+ * Ensures required fields (`username`, `firstName`, `lastName`) are present, are strings, and meet length constraints. Optionally parses `email` if provided. Throws a `CreateUserValidationError` if any required field is missing or invalid.
+ *
+ * @param body - The incoming request body containing user data
+ * @returns The validated and parsed `CreateUserDto`
+ * @throws CreateUserValidationError if a required field is missing or invalid
  */
 function parseCreateUserRequestBody(
 	body: Record<string, unknown>

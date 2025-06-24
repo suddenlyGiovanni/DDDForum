@@ -26,9 +26,9 @@ class DatabaseError extends BaseError {
 
 
 /**
- * Initializes the database schema by executing the init.sql file.
+ * Executes the SQL schema initialization script from the local `init.sql` file on the provided database instance.
  *
- * @param database - The database instance to initialize.
+ * Throws an `InitializationError` if reading the script or executing it fails.
  */
 function initializeSchema(database: DatabaseSync): void {
 	try {
@@ -48,10 +48,12 @@ function initializeSchema(database: DatabaseSync): void {
 }
 
 /**
- * Opens a synchronous database connection to the specified path and initializes it.
+ * Opens a synchronous SQLite database at the given file path, enables foreign key constraints, and initializes its schema.
  *
- * @param {URL} path - The file path to the database.
- * @return A database instance with foreign keys enabled and schema initialized.
+ * @param path - The file path to the SQLite database.
+ * @returns The opened and initialized database instance.
+ * @throws InitializationError if schema initialization fails.
+ * @throws DatabaseError if the database cannot be opened or another error occurs.
  */
 export function openDatabaseSync(path: URL): DatabaseSync {
 	let database: undefined | DatabaseSync
