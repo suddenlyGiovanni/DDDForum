@@ -240,6 +240,14 @@ export class UserRepository {
 	}
 }
 
+/**
+ * Generates a random alphanumeric password of the specified length.
+ *
+ * The password consists of uppercase letters, lowercase letters, and digits.
+ *
+ * @param length - The desired length of the generated password
+ * @returns A randomly generated password string
+ */
 function generateRandomPassword(length: number): string {
 	const charset =
 		'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
