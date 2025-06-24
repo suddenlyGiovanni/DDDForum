@@ -11,12 +11,12 @@ Content-Type: application/json
 
 
 ### Get an existing User by email query parameter
-GET http://localhost:3000/api/users/?email=foo@bar.baz
+GET http://localhost:3000/api/users/?email=keneth.orn@example.com
 Content-Type: application/json
 
 
 ### Edit an existing User by ID parameter
-PUT http://localhost:3000/api/users/2
+PUT http://localhost:3000/api/users/1
 Content-Type: application/json
 
 {
