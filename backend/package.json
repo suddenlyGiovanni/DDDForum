@@ -16,6 +16,7 @@
 	},
 	"license": "ISC",
 	"main": "src/index.ts",
+	"name": "@workspace/frontend",
 	"scripts": {
 		"format": "biome format --write",
 		"lint": "biome lint",
