@@ -1,57 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8"/>
-	<link rel="icon" type="image/svg+xml" href="/vite.svg"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<meta name="color-scheme" content="light only"/>
-	<title>DDD Forum</title>
-	<link rel="stylesheet" href="index.css"/>
-	<link rel="stylesheet" href="App.css"/>
-</head>
-<body>
-<div id="root">
-	<header id="header" class="flex align-center">
-		<div id="app-logo">
-			<img src="assets/dddforumlogo.png"/>
-		</div>
-		<div id="title-container">
-			<h1>Domain-Driven Designers</h1>
-			<h3>Where awesome domain driven designers are made</h3>
-			<a href="/submit">submit</a>
-		</div>
-		<div id="header-action-button">
-			<a href="/register.html">Join</a>
-		</div>
-	</header>
-	<div class="content-container">
-		<div class="registration-form">
-			<div>Create Account</div>
-			<input class="registration email" type="email" placeholder="email"/>
-			<input
-					class="registatation-input username"
-					type="text"
-					placeholder="username"
-			>
-			<input
-					class="registatation-input username"
-					type="text"
-					placeholder="first name"
-			>
-			<input
-					class="registatation-input username"
-					type="text"
-					placeholder="last name"
-			>
-			<div>
-				<div class="to-login">
-					<div>Already have an account?</div>
-					<a href="/login">Login</a>
+<html lang="en" class="text-inherit scheme-light-dark">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="color-scheme" content="light only" />
+		<title>DDD Forum</title>
+		<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+		<link rel="stylesheet" href="index.css" />
+		<link rel="stylesheet" href="App.css" />
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<div id="root">
+			<header id="header" class="flex justify-center items-center">
+				<div id="app-logo">
+					<img src="assets/dddforumlogo.png" />
 				</div>
-				<button class="submit-button" type="submit">Submit</button>
+				<div id="title-container" class="flex flex-col items-start">
+					<h1 class="text-5xl/normal m-0">Domain-Driven Designers</h1>
+					<h3 class="m-0">Where awesome domain driven designers are made</h3>
+					<a
+						class="font-medium text-(--color-primary) hover:text-(--color-primary-hover)"
+						href="/submit"
+						>submit</a
+					>
+				</div>
+				<div id="header-action-button">
+					<a
+						href="/register.html"
+						class="font-medium text-(--color-primary) hover:text-(--color-primary-hover)"
+						>Join</a
+					>
+				</div>
+			</header>
+			<div class="flex flex-col m-8">
+				<div class="registration-form w-lg max-w-3xl my-0 mx-auto">
+					<div>Create Account</div>
+					<input
+						class="email box-border block w-full py-2 px-4 mb-2 text-base text-(--color-text-form) border-3 border-(--color-border) rounded-sm transition duration-200"
+						placeholder="email"
+						type="email"
+					>
+					<input
+						class="box-border block w-full py-2 px-4 mb-2 text-base text-(--color-text-form) border-3 border-(--color-border) rounded-sm transition duration-200"
+						type="text"
+						placeholder="username"
+					>
+					<input
+						class="box-border block w-full py-2 px-4 mb-2 text-base text-(--color-text-form) border-3 border-(--color-border) rounded-sm transition duration-200"
+						type="text"
+						placeholder="first name"
+					>
+					<input
+						class="box-border block w-full py-2 px-4 mb-2 text-base text-(--color-text-form) border-3 border-(--color-border) rounded-sm transition duration-200"
+						type="text"
+						placeholder="last name"
+					>
+					<div>
+						<div class="to-login">
+							<div>Already have an account?</div>
+							<a
+								href="/login"
+								class="font-medium text-(--color-primary) hover:text-(--color-primary-hover)"
+								>Login</a
+							>
+						</div>
+						<button
+							class="submit-button py-2.5 px-5 text-base font-medium cursor-pointer bg-(--color-background-button-dark) border-solid border-transparent border rounded-lg transition duration-250 hover:border-(--color-primary) focus:outline-4 focus-visible:outline-4"
+							type="submit"
+						>
+							Submit
+						</button>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
-</body>
+	</body>
 </html>

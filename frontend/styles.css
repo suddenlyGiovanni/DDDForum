@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+:root {
+	/* Color tokens */
+	--color-primary: #646cff;
+	--color-primary-hover: #535bf2;
+	--color-secondary: #747bff;
+	--color-text-dark: #213547;
+	--color-text-light: rgba(255, 255, 255, 0.87);
+	--color-text-muted: #888;
+	--color-text-form: rgba(0, 0, 0, 0.84);
+	--color-background-dark: #242424;
+	--color-background-light: #ffffff;
+	--color-background-surface: #f1f1f1;
+	--color-background-button-dark: #1a1a1a;
+	--color-background-button-light: #f9f9f9;
+	--color-background-overlay: #e8e8e8;
+	--color-border: rgba(0, 0, 0, 0.79);
+	--color-border-dark: black;
+
+	/* Typography tokens */
+	--font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	--font-weight-normal: 400;
+	--font-weight-medium: 500;
+	--font-weight-bold: bold;
+	--font-size-small: 1rem;
+	--font-size-medium: 1.1rem;
+	--font-size-large: 1.2rem;
+	--font-size-xlarge: 3.2em;
+
+	/* Spacing tokens */
+	--space-xs: 0.5rem;
+	--space-sm: 1rem;
+	--space-md: 1.5rem;
+	--space-lg: 2rem;
+
+	/* Border tokens */
+	--border-radius-sm: 3px;
+	--border-radius-md: 8px;
+	--border-width-thin: 1px;
+	--border-width-medium: 2px;
+	--border-width-thick: 3px;
+
+	/* Base styles */
+	font-family: var(--font-family);
+	line-height: 1.5;
+	font-weight: var(--font-weight-normal);
+
+	color-scheme: light dark;
+	color: var(--color-text-light);
+	background-color: var(--color-background-dark);
+
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+@theme {
+	--font-display: "Inter", sans-serif;
+}
