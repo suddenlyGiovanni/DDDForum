@@ -4,6 +4,7 @@
 		"@tsconfig/node-ts": "catalog:",
 		"@tsconfig/node24": "catalog:",
 		"@tsconfig/strictest": "catalog:",
+		"@tsconfig/vite-react": "catalog:",
 		"typescript": "catalog:"
 	},
 	"devEngines": {

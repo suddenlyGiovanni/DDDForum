@@ -4,16 +4,30 @@ packages:
 
 catalog:
   '@biomejs/biome': 2.0.5
+  '@react-router/dev': ^7.6.2
+  '@react-router/node': ^7.6.2
+  '@react-router/serve': ^7.6.2
+  '@std/http': jsr:^1.0.18
+  '@tailwindcss/vite': ^4.1.10
   '@tsconfig/node-ts': ^23.6.1
   '@tsconfig/node24': ^24.0.1
   '@tsconfig/strictest': ^2.0.5
+  '@tsconfig/vite-react': ^6.3.6
   '@types/express': ~5.0.3
-  '@types/node': ^24.0.3
+  '@types/node': ^24.0.4
+  '@types/react': ^19.1.8
+  '@types/react-dom': ^19.1.6
   express: 5.1.0
   husky: ^9.1.7
+  isbot: ^5.1.28
+  react-dom: ^19.1.0
+  react-router: ^7.6.2
+  react: ^19.1.0
+  tailwindcss: ^4.1.10
   typescript: 5.8.3
+  vite-tsconfig-paths: ^5.1.4
+  vite: npm:rolldown-vite@^7.0.1
   vitest: 3.2.4
-  '@std/http': jsr:^1.0.18
 
 catalogMode: prefer
 
