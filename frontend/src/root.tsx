@@ -10,8 +10,6 @@ import {
 
 import favicon from '~/shared/assets/dddforumlogo.png?url'
 import { Layout as Shell } from '~/shared/layout/layout'
-import AppStyles from '~/shared/styles/app.css?url'
-import indexStyles from '~/shared/styles/index.css?url'
 import tailwind from '~/shared/styles/styles.css?url'
 
 import type { Route } from './+types/root'
@@ -29,8 +27,6 @@ export const links: Route.LinksFunction = () => [
 		rel: 'stylesheet',
 	},
 	{ href: tailwind, rel: 'stylesheet' },
-	{ href: indexStyles, rel: 'stylesheet' },
-	{ href: AppStyles, rel: 'stylesheet' },
 ]
 
 export function Layout({ children }: { children: React.ReactNode }) {
