@@ -1,28 +1,36 @@
+/** biome-ignore-all lint/correctness/noUnknownPseudoClass: <explanation> */
 @import "tailwindcss";
 
 :root {
 	/* Color tokens */
-	--color-primary: #646cff;
-	--color-primary-hover: #535bf2;
-	--color-secondary: #747bff;
-	--color-text-dark: #213547;
-	--color-text-light: rgba(255, 255, 255, 0.87);
-	--color-text-muted: #888;
-	--color-text-form: rgba(0, 0, 0, 0.84);
-	--color-background-dark: #242424;
-	--color-background-light: #ffffff;
-	--color-background-surface: #f1f1f1;
-	--color-background-button-dark: #1a1a1a;
-	--color-background-button-light: #f9f9f9;
-	--color-background-overlay: #e8e8e8;
-	--color-border: rgba(0, 0, 0, 0.79);
-	--color-border-dark: black;
+
+	--color-link: light-dark(
+		oklch(0.607 0.215 275.603),
+		oklch(0.644 0.192 277.246)
+	);
+	--color-link-hover: oklch(0.557 0.222 274.267);
+
+	--color-text-dark: oklch(0.321 0.041 246.652);
+	--color-text-light: oklch(1 0 89.876 / 0.87);
+	--color-text-muted: oklch(0.627 0 89.876);
+	--color-text-form: oklch(0 0 0 / 0.84);
+
+	--color-background-dark: oklch(0.26 0 89.876);
+	--color-background-light: oklch(1 0 89.876);
+	--color-background-overlay: oklch(0.931 0 89.876);
+
+	--color-background-button-dark: oklch(0.218 0 89.876);
+	--color-background-button-light: oklch(0.982 0 89.876);
+
+	--color-border: oklch(0 0 0 / 0.79);
+	--color-border-dark: oklch(0 0 0);
 
 	/* Typography tokens */
-	--font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
 	--font-weight-normal: 400;
 	--font-weight-medium: 500;
 	--font-weight-bold: bold;
+
 	--font-size-small: 1rem;
 	--font-size-medium: 1.1rem;
 	--font-size-large: 1.2rem;
@@ -42,13 +50,16 @@
 	--border-width-thick: 3px;
 
 	/* Base styles */
-	font-family: var(--font-family);
-	line-height: 1.5;
-	font-weight: var(--font-weight-normal);
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
 	color-scheme: light dark;
-	color: var(--color-text-light);
-	background-color: var(--color-background-dark);
+
+	color: light-dark(var(--color-text-dark) var(--color-text-light));
+
+	background-color: light-dark(
+		var(--color-background-light),
+		var(--color-background-dark)
+	);
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -58,4 +69,8 @@
 
 @theme {
 	--font-display: "Inter", sans-serif;
+	--color-muted: var(--color-text-muted);
+	--color-dark: var(--color-text-dark);
+	--color-light: var(--color-text-light);
+	--color-primary: var(--color-link);
 }
