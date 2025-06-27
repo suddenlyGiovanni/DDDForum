@@ -1,5 +1,5 @@
 import type * as React from 'react'
 
 export const Content: React.FC<React.PropsWithChildren> = ({ children }) => (
-	<div className="flex flex-col m-8">{children}</div>
+	<div className="m-8 flex flex-col">{children}</div>
 )

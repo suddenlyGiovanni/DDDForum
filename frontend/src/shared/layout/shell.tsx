@@ -5,7 +5,7 @@ import { Header } from './header.tsx'
 
 export const Shell: React.FC<React.PropsWithChildren> = ({ children }) => {
 	return (
-		<div className="w-screen h-screen p-8 m-4 rounded-sm bg-background">
+		<div className="m-4 h-screen w-screen rounded-sm bg-background p-8">
 			<Header />
 			<Content>{children}</Content>
 		</div>

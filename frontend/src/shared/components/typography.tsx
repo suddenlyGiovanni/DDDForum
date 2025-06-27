@@ -5,7 +5,7 @@ import { twMerge } from '~/shared/styles/utils.ts'
 const H1 = ({ className, ...props }: React.ComponentProps<'h1'>) => (
 	<h1
 		className={twMerge(
-			'scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance',
+			'scroll-m-20 text-balance text-center font-extrabold text-4xl tracking-tight',
 			className
 		)}
 		{...props}
@@ -15,7 +15,7 @@ const H1 = ({ className, ...props }: React.ComponentProps<'h1'>) => (
 const H2 = ({ className, ...props }: React.ComponentProps<'h2'>) => (
 	<h2
 		className={twMerge(
-			'scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0',
+			'scroll-m-20 border-b pb-2 font-semibold text-3xl tracking-tight first:mt-0',
 			className
 		)}
 		{...props}
@@ -25,7 +25,7 @@ const H2 = ({ className, ...props }: React.ComponentProps<'h2'>) => (
 const H3 = ({ className, ...props }: React.ComponentProps<'h3'>) => (
 	<h3
 		className={twMerge(
-			'scroll-m-20 text-2xl font-semibold tracking-tight',
+			'scroll-m-20 font-semibold text-2xl tracking-tight',
 			className
 		)}
 		{...props}
@@ -35,7 +35,7 @@ const H3 = ({ className, ...props }: React.ComponentProps<'h3'>) => (
 const H4 = ({ className, ...props }: React.ComponentProps<'h4'>) => (
 	<h4
 		className={twMerge(
-			'scroll-m-20 text-xl font-semibold tracking-tight',
+			'scroll-m-20 font-semibold text-xl tracking-tight',
 			className
 		)}
 		{...props}

@@ -38,7 +38,7 @@ const HeaderActionButton: React.FC = () => {
 }
 
 export const Header = () => (
-	<header className="flex justify-center items-center">
+	<header className="flex items-center justify-center">
 		<Logo />
 		<Title />
 		<HeaderActionButton />
