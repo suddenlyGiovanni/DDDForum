@@ -1,0 +1,45 @@
+{
+	"$schema": "../node_modules/@biomejs/biome/configuration_schema.json",
+	"assist": {
+		"actions": {
+			"source": {
+				"useSortedProperties": "on"
+			}
+		},
+		"enabled": true
+	},
+	"css": {
+		"assist": {
+			"enabled": true
+		},
+		"formatter": {
+			"enabled": true
+		},
+		"linter": {
+			"enabled": true
+		}
+	},
+	"extends": "//",
+	"files": {
+		"includes": ["**/*.ts", "**/*.tsx", "**/*.css", "**/*.html"]
+	},
+	"html": {
+		"formatter": {
+			"enabled": true
+		}
+	},
+	"linter": {
+		"rules": {
+			"nursery": {
+				"useSortedClasses": {
+					"fix": "safe",
+					"level": "info",
+					"options": {
+						"functions": ["clsx", "cva", "tw", "tw.*", "cv", "twMerge"]
+					}
+				}
+			}
+		}
+	},
+	"root": false
+}
