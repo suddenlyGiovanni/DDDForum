@@ -4,16 +4,35 @@ packages:
 
 catalog:
   '@biomejs/biome': 2.0.6
+  '@nick/clsx': jsr:@nick/clsx@latest
+  '@react-router/dev': ^7.6.3
+  '@react-router/node': ^7.6.3
+  '@react-router/serve': ^7.6.3
+  '@std/http': jsr:^1.0.18
+  '@tailwindcss/vite': ^4.1.11
   '@tsconfig/node-ts': ^23.6.1
   '@tsconfig/node24': ^24.0.1
   '@tsconfig/strictest': ^2.0.5
+  '@tsconfig/vite-react': ^6.3.6
   '@types/express': ~5.0.3
-  '@types/node': ^24.0.6
+  '@types/node': ^24.0.7
+  '@types/react': ^19.1.8
+  '@types/react-dom': ^19.1.6
   express: 5.1.0
   husky: ^9.1.7
+  isbot: ^5.1.28
+  react-dom: ^19.1.0
+  react-router: ^7.6.3
+  react: ^19.1.0
+  tailwindcss: ^4.1.11
   typescript: 5.8.3
+  vite-tsconfig-paths: ^5.1.4
+  vite: npm:rolldown-vite@latest
   vitest: 3.2.4
-  '@std/http': jsr:^1.0.18
+  effect: ^3.16.10
+  tailwind-merge: ^3.3.1
+  class-variance-authority: ^0.7.1
+  '@radix-ui/react-slot': ^1.2.3
 
 catalogMode: prefer
 
@@ -21,3 +40,6 @@ enableGlobalVirtualStore: true
 
 onlyBuiltDependencies:
   - esbuild
+
+overrides:
+  vite: npm:rolldown-vite@latest

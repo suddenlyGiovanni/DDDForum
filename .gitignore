@@ -7,3 +7,4 @@
 **/dist
 **/.env
 /backend/src/database/*.db
+/frontend/.react-router/
