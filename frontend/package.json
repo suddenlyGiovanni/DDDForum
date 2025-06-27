@@ -1,0 +1,7 @@
+{
+	"imports": {
+		"~/*": "./src/*"
+	},
+	"name": "@workspace/frontend",
+	"type": "module"
+}
