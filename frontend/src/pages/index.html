@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="color-scheme" content="light dark" />
+		<title>DDD Forum</title>
+		<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+		<style type="text/tailwindcss">
+   :root {
+				/* define here the css color variables	*/
+				--radius: 0.65rem;
+				--background: light-dark(oklch(0.958 0 89.876), oklch(0.182 0 89.876));
+				--foreground: light-dark(oklch(0 0 0 / 0.84), oklch(1 0 89.876 / 0.9));
+				--primary: light-dark(oklch(0.607 0.215 275.603), oklch(0.68 0.158 276.935));
+				--primary-foreground: light-dark(oklch(1 0 89.876), oklch(0.182 0 89.876));
+				--primary-hover: light-dark(oklch(0.557 0.222 274.267), oklch(0.585 0.204 277.117));
+				--secondary: light-dark(oklch(0.218 0 89.876), oklch(0.297 0 89.876));
+				--secondary-foreground: light-dark(oklch(1 0 89.876), oklch(1 0 89.876 / 0.9));
+				--border: light-dark(oklch(0 0 0 / 0.79), oklch(1 0 89.876 / 0.15));
+				--muted: light-dark(oklch(0.6 0 89.876), oklch(0.551 0.023 264.364));
+				--muted-foreground: light-dark(oklch(0.446 0.026 256.802), oklch(0.714 0.019 261.325));
+
+				font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+				line-height: 1.5;
+				font-weight: 400;
+			}
+   @theme {
+				--color-background: var(--background);
+				--color-foreground: var(--foreground);
+				--color-primary: var(--primary);
+				--color-primary-foreground: var(--primary-foreground);
+				--color-primary-hover: var(--primary-hover);
+				--color-secondary: var(--secondary);
+				--color-secondary-foreground: var(--secondary-foreground);
+				--color-border: var(--border);
+				--color-muted: var(--muted);
+				--color-muted-foreground: var(--muted-foreground);
+				--radius-sm: calc(var(--radius) - 4px);
+				--radius-md: calc(var(--radius) - 2px);
+				--radius-lg: var(--radius);
+			}
+
+		</style>
+	</head>
+	<body class="flex items-center min-w-[320px] min-h-screen m-0">
+		<div id="root" class="w-[100vw] h-[100vh] p-8 m-4 bg-background rounded-sm">
+			<header id="header" class="flex items-center justify-center">
+				<div id="app-logo">
+					<img src="../shared/assets/dddforumlogo.png" class="max-w-[4rem]" />
+				</div>
+				<div id="title-container" class="flex flex-col items-start">
+					<h1 class="text-[3.2em] leading-[1.1] m-0">
+						Domain-Driven Designers
+					</h1>
+					<h3 class="m-0">Where awesome domain driven designers are made</h3>
+					<a
+						href="/submit"
+						class="font-medium text-primary hover:text-[color:var(--primary-hover)]"
+						>submit</a
+					>
+				</div>
+				<div id="header-action-button">
+					<a
+						href="/register.html"
+						class="font-medium text-primary hover:text-[color:var(--primary-hover)]"
+						>Join</a
+					>
+				</div>
+			</header>
+			<div class="flex flex-col m-8">
+				<div class="flex mb-6">
+					<div
+						class="mr-4 text-[1.1rem] text-muted-foreground cursor-pointer pr-4 border-r-2 border-foreground text-foreground"
+					>
+						Popular
+					</div>
+					<div
+						class="mr-4 text-[1.1rem] text-muted-foreground cursor-pointer text-foreground"
+					>
+						New
+					</div>
+				</div>
+
+				<div class="flex flex-col">
+					<div class="flex flex-row">
+						<div class="flex flex-col items-center mr-4">
+							<div>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="16"
+									height="16"
+									viewBox="0 0 16 16"
+								>
+									<path
+										d="M4,12l1.41,1.41L11,7.83V20h2V7.83l5.58,5.59L20,12,12,4Z"
+										transform="translate(-4 -4)"
+										class="fill-foreground dark:fill-white"
+									/>
+								</svg>
+							</div>
+							<div>5</div>
+							<div>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="16"
+									height="16"
+									viewBox="0 0 16 16"
+									class="transform rotate-180"
+								>
+									<path
+										d="M4,12l1.41,1.41L11,7.83V20h2V7.83l5.58,5.59L20,12,12,4Z"
+										transform="translate(-4 -4)"
+										class="fill-foreground dark:fill-white"
+									/>
+								</svg>
+							</div>
+						</div>
+						<div>
+							<div class="text-[1.2rem] font-bold">First Post</div>
+							<div class="flex flex-row items-center">
+								<div class="pr-2 mr-2 border-r border-foreground">
+									2 days ago
+								</div>
+								<a
+									href="/member/username"
+									class="pr-2 mr-2 border-r border-foreground font-medium text-primary hover:text-[color:var(--primary-hover)]"
+								>
+									by username
+								</a>
+								<div>comments</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="flex flex-row mt-4">
+						<div class="flex flex-col items-center mr-4">
+							<div>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="16"
+									height="16"
+									viewBox="0 0 16 16"
+								>
+									<path
+										d="M4,12l1.41,1.41L11,7.83V20h2V7.83l5.58,5.59L20,12,12,4Z"
+										transform="translate(-4 -4)"
+										class="fill-foreground dark:fill-white"
+									/>
+								</svg>
+							</div>
+							<div>2</div>
+							<div>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="16"
+									height="16"
+									viewBox="0 0 16 16"
+									class="transform rotate-180"
+								>
+									<path
+										d="M4,12l1.41,1.41L11,7.83V20h2V7.83l5.58,5.59L20,12,12,4Z"
+										transform="translate(-4 -4)"
+										class="fill-foreground dark:fill-white"
+									/>
+								</svg>
+							</div>
+						</div>
+						<div>
+							<div class="text-[1.2rem] font-bold">Second Post!</div>
+							<div class="flex flex-row items-center">
+								<div class="pr-2 mr-2 border-r border-foreground">
+									1 month ago
+								</div>
+								<a
+									href="/member/username"
+									class="pr-2 mr-2 border-r border-foreground font-medium text-primary hover:text-[color:var(--primary-hover)]"
+								>
+									by username
+								</a>
+								<div>3 comments</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="flex flex-row mt-4">
+						<div class="flex flex-col items-center mr-4">
+							<div>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="16"
+									height="16"
+									viewBox="0 0 16 16"
+								>
+									<path
+										d="M4,12l1.41,1.41L11,7.83V20h2V7.83l5.58,5.59L20,12,12,4Z"
+										transform="translate(-4 -4)"
+										class="fill-foreground dark:fill-white"
+									/>
+								</svg>
+							</div>
+							<div>7</div>
+							<div>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="16"
+									height="16"
+									viewBox="0 0 16 16"
+									class="transform rotate-180"
+								>
+									<path
+										d="M4,12l1.41,1.41L11,7.83V20h2V7.83l5.58,5.59L20,12,12,4Z"
+										transform="translate(-4 -4)"
+										class="fill-foreground dark:fill-white"
+									/>
+								</svg>
+							</div>
+						</div>
+						<div>
+							<div class="text-[1.2rem] font-bold">Why DDD?</div>
+							<div class="flex flex-row items-center">
+								<div class="pr-2 mr-2 border-r border-foreground">
+									10 days ago
+								</div>
+								<a
+									href="/member/username"
+									class="pr-2 mr-2 border-r border-foreground font-medium text-primary hover:text-[color:var(--primary-hover)]"
+								>
+									by username
+								</a>
+								<div>3 comments</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

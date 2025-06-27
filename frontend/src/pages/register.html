@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="color-scheme" content="light dark" />
+		<title>DDD Forum</title>
+		<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+		<style type="text/tailwindcss">
+			:root {
+				/* define here the css color variables	*/
+				--radius: 0.65rem;
+				--background: light-dark(#f1f1f1, #121212);
+				--foreground: light-dark(rgba(0,0,0,0.84), rgba(255,255,255,0.9));
+				--primary: light-dark(#646cff, #818cf8);
+				--primary-foreground: light-dark(white, #121212);
+				--primary-hover: light-dark(#535bf2, #6366f1);
+				--secondary: light-dark(#1a1a1a, #2d2d2d);
+				--secondary-foreground: light-dark(white, rgba(255,255,255,0.9));
+				--border: light-dark(rgba(0,0,0,0.79), rgba(255,255,255,0.15));
+				--muted: light-dark(#808080, #6b7280);
+				--muted-foreground: light-dark(#4b5563, #9ca3af);
+
+				font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+				line-height: 1.5;
+				font-weight: 400;
+			}
+			@theme {
+				--color-background: var(--background);
+				--color-foreground: var(--foreground);
+				--color-primary: var(--primary);
+				--color-primary-foreground: var(--primary-foreground);
+				--color-primary-hover: var(--primary-hover);
+				--color-secondary: var(--secondary);
+				--color-secondary-foreground: var(--secondary-foreground);
+				--color-border: var(--border);
+				--color-muted: var(--muted);
+				--color-muted-foreground: var(--muted-foreground);
+				--radius-sm: calc(var(--radius) - 4px);
+				--radius-md: calc(var(--radius) - 2px);
+				--radius-lg: var(--radius);
+			}
+		</style>
+	</head>
+	<body class="flex items-center min-w-[100vw] min-h-screen m-0">
+		<div id="root" class="w-[100vw] h-[100vh] p-8 m-4 bg-background rounded-sm">
+			<header id="header" class="flex items-center justify-center">
+				<div id="app-logo">
+					<img src="../shared/assets/dddforumlogo.png" class="max-w-[4rem]" />
+				</div>
+				<div id="title-container" class="flex flex-col items-start">
+					<h1 class="text-[3.2em] leading-[1.1] m-0">Domain-Driven Designers</h1>
+					<h3 class="m-0">Where awesome domain driven designers are made</h3>
+					<a href="/submit" class="font-medium text-primary hover:text-[color:var(--primary-hover)]">submit</a>
+				</div>
+				<div id="header-action-button">
+					<a href="/register.html" class="font-medium text-primary hover:text-[color:var(--primary-hover)]">Join</a>
+				</div>
+			</header>
+			<div class="flex flex-col m-8">
+				<div class="w-[500px] max-w-[800px] mx-auto">
+					<div class="text-lg font-medium mb-4">Create Account</div>
+					<input 
+						class="box-border block w-full p-[0.6rem_1rem] mb-2 text-base text-foreground border-[3px] border-solid border-border rounded-sm transition-all duration-200"
+						type="email" 
+						placeholder="email" 
+					/>
+					<input
+						class="box-border block w-full p-[0.6rem_1rem] mb-2 text-base text-foreground border-[3px] border-solid border-border rounded-sm transition-all duration-200"
+						type="text"
+						placeholder="username"
+					>
+					<input
+						class="box-border block w-full p-[0.6rem_1rem] mb-2 text-base text-foreground border-[3px] border-solid border-border rounded-sm transition-all duration-200"
+						type="text"
+						placeholder="first name"
+					>
+					<input
+						class="box-border block w-full p-[0.6rem_1rem] mb-2 text-base text-foreground border-[3px] border-solid border-border rounded-sm transition-all duration-200"
+						type="text"
+						placeholder="last name"
+					>
+					<div class="flex justify-between items-center mt-4">
+						<div class="flex items-center">
+							<div class="mr-2">Already have an account?</div>
+							<a href="/login" class="font-medium text-primary hover:text-[color:var(--primary-hover)]">Login</a>
+						</div>
+						<button 
+							class="px-[0.6em] py-[1.2em] font-inherit text-base font-medium cursor-pointer bg-secondary text-secondary-foreground border border-solid border-transparent rounded-lg transition-[border-color] duration-[0.25s] hover:border-primary focus:outline-[4px_auto_-webkit-focus-ring-color]" 
+							type="submit"
+						>
+							Submit
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
