@@ -3,7 +3,7 @@ packages:
   - frontend
 
 catalog:
-  '@biomejs/biome': 2.0.5
+  '@biomejs/biome': 2.1.1
   '@tsconfig/node-ts': ^23.6.1
   '@tsconfig/node24': ^24.0.1
   '@tsconfig/strictest': ^2.0.5
