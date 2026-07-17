@@ -12,7 +12,7 @@ catalog:
   express: 5.1.0
   husky: ^9.1.7
   typescript: 5.8.3
-  vitest: 3.2.4
+  vitest: 3.2.6
   '@std/http': jsr:^1.0.18
 
 catalogMode: prefer
