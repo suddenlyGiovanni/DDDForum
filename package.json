@@ -10,7 +10,7 @@
 		"packageManager": {
 			"name": "pnpm",
 			"onFail": "error",
-			"version": "10.12.1"
+			"version": "12.10.1"
 		},
 		"runtime": {
 			"name": "node",
@@ -22,6 +22,6 @@
 		"node": ">=24"
 	},
 	"name": "the-software-essentialist",
-	"packageManager": "pnpm@10.12.1+sha512.f0dda8580f0ee9481c5c79a1d927b9164f2c478e90992ad268bbb2465a736984391d6333d2c327913578b2804af33474ca554ba29c04a8b13060a717675ae3ac",
+	"packageManager": "pnpm@12.10.1+sha512.ba40a37eb1a370d60fea8c4cf1d364c13bcccef518e98ad2bcee954f539d38da37458e58261a3fa55e06523450ea0ffff9f497b135be41f2c15c1642bacace6c",
 	"type": "module"
 }
